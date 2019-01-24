@@ -2,6 +2,7 @@ package fetcher
 
 import (
 	"fmt"
+	"io/ioutil"
 	"net/http"
 )
 
@@ -14,7 +15,10 @@ func Fetch(url string)([]byte, error) {
 
 	if resp.StatusCode != http.StatusOK {
 		return nil,
-		fmt.Errorf("wrong status code: %d",
-			resp.StatusCode)
+			fmt.Errorf("wrong status code: %d",
+				resp.StatusCode)
 	}
+	//e := determineEncoding(resp.Body)
+	//utf8Reader := transform.NewReader(resp.Body,e.NewDecoder() )
+	return ioutil.ReadAll(resp.Body)
 }
