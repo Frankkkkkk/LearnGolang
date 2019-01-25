@@ -7,9 +7,10 @@ import (
 
 func main() {
 	engine.Run(engine.Request{
-		Url:"http://www.zhenai.com/zhenghun",
-		ParserFunc:parser.ParseCityList,
+		Url:        "http://www.zhenai.com/zhenghun",
+		ParserFunc: parser.ParseCityList,
 	})
+}
 	//resp, err := http.Get(
 	//	"http://www.zhenai.com/zhenghun")
 	//if err != nil {
@@ -29,7 +30,6 @@ func main() {
 	//}
 	////fmt.Printf("%s\n",all)
 	//printCityList(all)
-}
 
 //func printCityList (contents []byte){
 //
