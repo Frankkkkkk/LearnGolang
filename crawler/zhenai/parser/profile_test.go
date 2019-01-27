@@ -8,11 +8,11 @@ import (
 
 func TestParseProfile(t *testing.T) {
 	contents,err :=fetcher.Fetch(
-		"http://www.zhenai.com/zhenghun/aba")
+		"http://album.zhenai.com/u/")
 	if err != nil{
 		panic(err)
 	}
-	result := ParseProfile(contents, "安静的雪")
+	result := ParseProfile(contents, "不想")
 
 	if len(result.Items) != 1{
 		t.Errorf("Items should contain 1 "+
@@ -22,9 +22,10 @@ func TestParseProfile(t *testing.T) {
 	profile := result.Items[0].(model.Profile)
 
 	expected := model.Profile{
-		Age: 34,
+		Name:"不想",
+		Age: 37,
 	}
 	if profile != expected{
-		t.Errorf("expected %v: but was %v",1, len(result.Items))
+		t.Errorf("expected %v: but was %v", expected,profile)
 	}
 }
