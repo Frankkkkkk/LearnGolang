@@ -8,7 +8,7 @@ import (
 
 func TestParseProfile(t *testing.T) {
 	contents,err :=fetcher.Fetch(
-		"http://www.zhenai.com/zhenghun")
+		"http://www.zhenai.com/zhenghun/aba")
 	if err != nil{
 		panic(err)
 	}
@@ -23,7 +23,6 @@ func TestParseProfile(t *testing.T) {
 
 	expected := model.Profile{
 		Age: 34,
-		Marriage: "离异",
 	}
 	if profile != expected{
 		t.Errorf("expected %v: but was %v",1, len(result.Items))

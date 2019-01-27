@@ -12,6 +12,7 @@ func Parsecity(
 		matches:=re.FindAllSubmatch(contents,-1)
 
 		result := engine.ParseResult{}
+		limit :=1
 		for _,m := range matches{
 			result.Items =append(
 				result.Items, "User "+string(m[2]))
@@ -21,8 +22,11 @@ func Parsecity(
 					ParserFunc: func(c []byte) engine.ParseResult {
 						return ParseProfile(c, string(m[2]))
 					},
-
 				})
+			limit --
+			if limit ==0{
+				break
+			}
 		}
 		return result
 	

@@ -12,13 +12,12 @@ func Fetch(url string)([]byte, error) {
 		return nil, err
 	}
 	defer resp.Body.Close()
+	//fmt.Printf("%s\n",resp)
 
 	if resp.StatusCode != http.StatusOK {
 		return nil,
 			fmt.Errorf("wrong status code: %d",
 				resp.StatusCode)
 	}
-	//e := determineEncoding(resp.Body)
-	//utf8Reader := transform.NewReader(resp.Body,e.NewDecoder() )
 	return ioutil.ReadAll(resp.Body)
 }
