@@ -2,7 +2,7 @@
 package main
 
 import (
-	"LearnGolang/Doubanolang/Douban/parse"
+	"LearnGolang/Douban/parse"
 	"github.com/PuerkitoBio/goquery"
 	"log"
 	"strings"
