@@ -2,7 +2,7 @@
 package main
 
 import (
-	"LearnGolang/Douban/parse"
+	"LearnGolang/Douban/Parse"
 	"github.com/PuerkitoBio/goquery"
 	"log"
 	"strings"
@@ -14,16 +14,16 @@ var (
 
 // 开始爬取
 func Start() {
-	var movies []parse.DoubanMovie
+	var movies []Parse.DoubanMovie
 
-	pages := parse.GetPages(BaseUrl)
+	pages := Parse.GetPages(BaseUrl)
 	for _, page := range pages {
 		doc, err := goquery.NewDocument(strings.Join([]string{BaseUrl, page.Url}, ""))
 		if err != nil {
 			log.Println(err)
 		}
 
-		movies = append(movies, parse.ParseMovies(doc)...)
+		movies = append(movies, Parse.ParseMovies(doc)...)
 	}
 
 }

@@ -1,4 +1,4 @@
-package parse
+package Parse
 
 import (
 	"log"
