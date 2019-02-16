@@ -10,7 +10,7 @@ import (
 )
 
 type DoubanMovie struct {
-	Title    string `jason:Tittle`
+	Title    string
 	Subtitle string
 	Other    string
 	Desc     string
