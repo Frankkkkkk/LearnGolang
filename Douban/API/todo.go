@@ -1,12 +1,8 @@
 package main
 
-import "time"
-
 type Todo struct{
 	Id int `json:"id"`
 	Name string `json:"name"`
-	Completed bool `json:"completed"`
-	Due time.Time `json:"deu"`
 	Title    string `json:"Tittle"`
 	Subtitle string `json:"Subtitle"`
 	Other    string `json:"Other"`

@@ -1,29 +1,10 @@
 package main
 
-import (
-)
-
 var currentId int
 
 var todos Todos
 
-//some seed data
-//func readFile()Todo{
-//	//filePtr, err := os.Open("Douban.json")
-//	//if err != nil {
-//	//	fmt.Println("Open file failed [Err:%s]", err.Error())
-//	//}
-//	//defer filePtr.Close()
-//	////decoder := json.NewDecoder(filePtr)
-//	//if err != nil {
-//	//	fmt.Println("Decoder failed", err.Error())
-//	//
-//	//} else {
-//	//	fmt.Println("Decoder success")
-//	//	//fmt.Println(movies)
-//	//}
-//	//return Todo{}
-//}
+
 func init(){
 	RepoCreateTodo(Todo{Name: "Write presentation"})
 	RepoCreateTodo(Todo{Name: "Host "})
