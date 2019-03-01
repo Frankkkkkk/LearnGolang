@@ -1,8 +1,8 @@
 package parser
 
 import (
-	"LearnGolang/crawler/engine"
-	"LearnGolang/crawler/model"
+	"learngo/crawler/engine"
+	"learngo/crawler/model"
 	"regexp"
 	"strconv"
 )

@@ -1,8 +1,8 @@
 package main
 
 import (
-	"LearnGolang/crawler/engine"
-	"LearnGolang/crawler/zhenai/parser"
+	"learngo/crawler/engine"
+	"learngo/crawler/zhenai/parser"
 )
 
 func main() {

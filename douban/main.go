@@ -2,7 +2,7 @@
 package main
 
 import (
-	"LearnGolang/Douban/Parse"
+	"learngo/douban/parse"
 	"encoding/json"
 	"fmt"
 	"github.com/PuerkitoBio/goquery"
@@ -17,16 +17,16 @@ var (
 
 // 开始爬取
 func Start() {
-	var movies []Parse.DoubanMovie
+	var movies []parse.DoubanMovie
 
-	pages := Parse.GetPages(BaseUrl)
+	pages := parse.GetPages(BaseUrl)
 	for _, page := range pages {
 		doc, err := goquery.NewDocument(strings.Join([]string{BaseUrl, page.Url}, ""))
 		if err != nil {
 			log.Println(err)
 		}
 
-		movies = append(movies, Parse.ParseMovies(doc)...)
+		movies = append(movies, parse.ParseMovies(doc)...)
 
 		filePtr, err :=os.Create("Douban.json")
 		if err != nil{
@@ -82,7 +82,7 @@ func readFile() {
 	}
 	defer filePtr.Close()
 
-	var movies []Parse.DoubanMovie
+	var movies []parse.DoubanMovie
 
 	// 创建json解码器
 	decoder := json.NewDecoder(filePtr)

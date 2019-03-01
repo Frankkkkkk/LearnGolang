@@ -1,7 +1,7 @@
 package main
 
 import (
-	"LearnGolang/functional/fib"
+	"learngo/functional/fib"
 	"bufio"
 	"fmt"
 	"io"

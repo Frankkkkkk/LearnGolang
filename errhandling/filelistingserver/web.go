@@ -1,7 +1,7 @@
 package main
 
 import (
-	"LearnGolang/errhandling/filelistingserver/filelisting"
+	"learngo/errhandling/filelistingserver/filelisting"
 	"log"
 	"net/http"
 	"os"

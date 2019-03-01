@@ -1,8 +1,8 @@
 package parser
 
 import (
-	"LearnGolang/crawler/fetcher"
-	"LearnGolang/crawler/model"
+	"learngo/crawler/fetcher"
+	"learngo/crawler/model"
 	"testing"
 )
 

@@ -1,7 +1,7 @@
 package engine
 
 import (
-	"LearnGolang/crawler/fetcher"
+	"learngo/crawler/fetcher"
 	"log"
 )
 
