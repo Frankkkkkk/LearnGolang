@@ -19,10 +19,10 @@ import (
 func main() {
 	manager := manage.NewDefaultManager()
 	manager.SetAuthorizeCodeTokenCfg(manage.DefaultAuthorizeCodeTokenCfg)
-
+	//设置授权码模式令牌的配置参数
 	// token store
 	manager.MustTokenStorage(store.NewMemoryTokenStore())
-
+	//强制映射访问令牌存储接口
 	clientStore := store.NewClientStore()
 	clientStore.Set("222222", &models.Client{
 		ID:     "222222",
@@ -30,7 +30,7 @@ func main() {
 		Domain: "http://localhost:9094",
 	})
 	manager.MapClientStorage(clientStore)
-
+	//reflect the information of client
 	srv := server.NewServer(server.NewConfig(), manager)
 	srv.SetPasswordAuthorizationHandler(func(username, password string) (userID string, err error) {
 		if username == "test" && password == "test" {
@@ -39,7 +39,7 @@ func main() {
 		return
 	})
 	srv.SetUserAuthorizationHandler(userAuthorizeHandler)
-
+	//get user id from request authorization
 	srv.SetInternalErrorHandler(func(err error) (re *errors.Response) {
 		log.Println("Internal Error:", err.Error())
 		return
@@ -48,7 +48,7 @@ func main() {
 	srv.SetResponseErrorHandler(func(re *errors.Response) {
 		log.Println("Response Error:", re.Error.Error())
 	})
-
+	//response error handling
 	http.HandleFunc("/login", loginHandler)
 	http.HandleFunc("/auth", authHandler)
 
@@ -73,7 +73,7 @@ func main() {
 			http.Error(w, err.Error(), http.StatusBadRequest)
 		}
 	})
-
+	//request processing
 	http.HandleFunc("/token", func(w http.ResponseWriter, r *http.Request) {
 		err := srv.HandleTokenRequest(w, r)
 		if err != nil {
@@ -143,7 +143,7 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusFound)
 		return
 	}
-	outputHTML(w, r, "LearnGolang/Douban/oauth/server/static/login.html")
+	outputHTML(w, r, "learngo/douban/oauth/server/static/login.html")
 }
 
 func authHandler(w http.ResponseWriter, r *http.Request) {
