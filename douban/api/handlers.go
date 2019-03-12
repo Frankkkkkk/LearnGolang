@@ -6,9 +6,11 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"os"
-	"log"
+	"strings"
+	"time"
 )
 
 func Index(w http.ResponseWriter, r *http.Request) {
@@ -19,7 +21,7 @@ func TodoIndex(w http.ResponseWriter, r *http.Request) {
 
 	filePtr, err := os.Open("Douban.json")
 	if err != nil {
-		fmt.Println("Open file failed [Err:%s]", err.Error())
+		fmt.Println("Open file failed ", err.Error())
 	}
 	defer filePtr.Close()
 
@@ -33,11 +35,42 @@ func TodoIndex(w http.ResponseWriter, r *http.Request) {
 }
 
 func TodoShow(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusNotFound)
-	if err := json.NewEncoder(w).Encode(jsonErr{Code: http.StatusNotFound, Text: "Not Found"}); err != nil {
-		panic(err)
+	//w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	//w.WriteHeader(http.StatusNotFound)
+	//if err := json.NewEncoder(w).Encode(jsonErr{Code: http.StatusNotFound, Text: "Not Found"}); err != nil {
+	//	panic(err)
+	//}
+
+	value :=r.Header.Get("Authorization")
+	s := strings.Split(value, " ")
+	fmt.Println(s[1])
+
+	//http.Redirect(w, r, "")
+	fmt.Printf("host=%s\n",r.URL.Host)
+	fmt.Printf("path=%s\n",r.URL.Path)
+	fmt.Printf("raw path=%s\n",r.URL.RawPath)
+	fmt.Printf("raw query=%s\n",r.URL.RawQuery)
+	data := map[string]interface{}{
+		"expires_in": time.Hour * 2,
+		"client_id":222222,
+		"user_id":2222222,
 	}
+	bytesRepresentation, err := json.Marshal(data)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	resp, err := http.Post("http://localhost:9096/login?"+r.URL.RawQuery, "application/json; charset=UTF-8", bytes.NewBuffer(bytesRepresentation))
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	var result map[string]interface{}
+
+	json.NewDecoder(resp.Body).Decode(&result)
+
+	log.Println(result)
+	log.Println(result["data"])
+	fmt.Fprint(w,result)
 }
 
 func TodoCreate(w http.ResponseWriter, r *http.Request) {

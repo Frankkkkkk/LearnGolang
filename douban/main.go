@@ -28,7 +28,7 @@ func Start() {
 
 		movies = append(movies, parse.ParseMovies(doc)...)
 
-		filePtr, err :=os.Create("Douban.json")
+		filePtr, err :=os.Create("learngo/douban/Douban.json")
 		if err != nil{
 			fmt.Println("Create file failed",err.Error())
 			return
@@ -75,7 +75,7 @@ func main() {
 }
 func readFile() {
 
-	filePtr, err := os.Open("Douban.json")
+	filePtr, err := os.Open("learngo/douban/Douban.json")
 	if err != nil {
 		fmt.Println("Open file failed [Err:%s]", err.Error())
 		return

@@ -29,7 +29,7 @@ var routes =Routes{
 	Route{
 		"TodoShow",
 		"GET",
-		"/todos/{todoId}",
+		"/login",
 		TodoShow,
 	},
 	Route{
